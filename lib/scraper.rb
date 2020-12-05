@@ -5,19 +5,35 @@ require 'pry'
 
 class Scraper 
 
-    def get_page 
+    def get_teams 
 
     end   
+
+    def make_teams
+
+    end 
+
+    def get_players_by_team 
+
+    end  
+
+    def make_player
+
+    end 
 
     def get_leagues 
 
     end 
 
-    def league 
+    def make_league 
 
     end 
 
-    def get_roster 
+    def get_roster_by_team 
+
+    end  
+
+    def print_leagues 
 
     end 
 

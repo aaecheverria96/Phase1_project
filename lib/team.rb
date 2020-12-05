@@ -6,7 +6,7 @@ def initialize(name)
 end  
 
 def players 
- Player.all.select {|player| player.team == self}
+ Player.all.select {|player| player.team == self}  
 end 
 
 
