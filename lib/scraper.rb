@@ -5,6 +5,11 @@ require 'pry'
 
 class Scraper 
 
+    def get_page 
+        doc = Nokogiri::HTML(open("https://www.espn.com/soccer/"))
+        binding.pry
+    end 
+
     def get_teams 
 
     end   
@@ -38,3 +43,5 @@ class Scraper
     end 
 
 end 
+
+Scraper.new.get_page 
