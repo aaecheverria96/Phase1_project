@@ -1,9 +1,15 @@
 require 'nokogiri' 
 require 'open-uri'
-require 'pry'
+require 'pry' 
+require 'byebug'
 
 
 class Scraper 
+
+    def get_page 
+        doc = Nokogiri::HTML(open("https://www.espn.com/soccer/"))
+      
+    end 
 
     def get_teams 
 
@@ -38,3 +44,5 @@ class Scraper
     end 
 
 end 
+
+Scraper.new.get_page 
