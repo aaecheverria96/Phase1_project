@@ -1,23 +1,21 @@
-require 'nokogiri' 
-require 'open-uri'
-require 'pry' 
-require 'byebug'
+
 
 
 class Scraper 
 
-    def get_page 
+    def get_leagues
         url = "https://www.espn.com/soccer/competitions" 
-        html =  open('https://www.espn.com/soccer/competitions') 
+        html =  open("https://www.espn.com/soccer/competitions") 
         doc = Nokogiri::HTML(html) 
-        league_names_container = doc.at_css('[id="topCompetitions"]').next_element.children.first.children.children ## get top div for league names
-        league_names = []
+        leagues_container = doc.css("#fittPageContainer > div.page-container.cf > div > div > div > div:nth-child(3) > div:nth-child(1) > div > div > div > section > a") 
+        leagues_container.each do |league| 
+          League.new(league.children.attr("title").value, league.attr("href"))
         
-        league_names_container.each do |league|
-            league_names << league.text.strip
-        end
+        end 
+        binding.pry
+      
 
-        return league_names
+        #return league_names
       end 
 
     def get_teams 
@@ -36,10 +34,7 @@ class Scraper
 
     end 
 
-    def get_leagues 
-
-    end 
-
+  
     def make_league 
 
     end 
@@ -53,4 +48,5 @@ class Scraper
     end 
 
 end 
-
+#fittPageContainer > div.page-container.cf > div > div > div > div:nth-child(3) > div:nth-child(1) > div 
+#fittPageContainer > div.page-container.cf > div > div > div > div:nth-child(3) > div:nth-child(1) > div > div:nth-child(1) > div > section > a

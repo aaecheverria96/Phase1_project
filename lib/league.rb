@@ -1,9 +1,9 @@
 class League 
-attr_accessor :name, :standing, :fixtures
+attr_accessor :name, :url 
 @@all = []
 
-def initialize(name, standing, fixtures) 
-    @name, @standing, @fixtures =  name, standing, fixtures 
+def initialize(name, url) 
+    @name, @url =  name, url
     self.class.show_all << self 
 end  
 

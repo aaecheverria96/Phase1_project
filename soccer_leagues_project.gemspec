@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Your Username"]
   spec.email         = ["you@example.com"]
 
-  spec.summary       = ""
+  spec.summary       = "Allows individuals to see the Top 5 European Soccer Leagues and find scores. As well as rankings and team rosters"
   #spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/aaecheverria96/Phase1_project"
   spec.license       = "MIT"
