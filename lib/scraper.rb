@@ -12,7 +12,7 @@ class Scraper
           League.new(league.children.attr("title").value, league.attr("href"))
         
         end 
-        binding.pry
+      
       
 
         #return league_names
