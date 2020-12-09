@@ -1,5 +1,5 @@
 class League 
-attr_accessor :name, :url 
+attr_accessor :name, :url, :matches 
 @@all = []
 
 def initialize(name, url) 
@@ -15,8 +15,8 @@ def self.rest_all
     show_all.clear 
 end 
 
-def self.show_fixtures_by_date
-   
+def self.show_matches_by_league
+   Match.show_all {|match| match.league == self}
 end  
 
 def teams 
