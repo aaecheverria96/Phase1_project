@@ -24,20 +24,23 @@ class Scraper
 
 
       def get_standings
-        url = "https://www.espn.com/soccer/league/_/name/USA.1/USA.1"
+        url = "https://www.espn.com/soccer/league/_/name/USA.1/USA.1" 
         html = open(url) 
         doc = Nokogiri::HTML(html) 
-        standings_container = "#main-container > div > section.col-c.chk-height > article > div > table > tbody  tr"
-        
-       
-       #get_standings = doc.css("#main-container > div > section.col-c.chk-height > article > div > table > tbody:nth-child(2)") 
+        #standings_container = doc.css("#main-container > div > section.col-c.chk-height > article > div > table > tbody  tr" )
+
+        #standings_container.each do |standing| 
+         # League.new
        
 
       end 
 
     def get_teams 
-     
-       
+     url = "https://www.espn.com/soccer/league/_/name/UEFA.CHAMPIONS/uefa-champions-league"
+     html = open(url) 
+     doc = Nokogiri::HTML(html) 
+     binding.pry 
+       #doc.css("#fittPageContainer > div.page-container.cf > div > div > div.Wrapper.bg-clr-white.br-5.mb3.pa5 > div.layout.is-split")
     end   
 
     def make_teams
@@ -45,7 +48,7 @@ class Scraper
     end 
 
     def get_players_by_team 
-
+      #doc.css("#fittPageContainer > div.StickyContainer > div.page-container.cf > div")
     end  
 
     def make_player
