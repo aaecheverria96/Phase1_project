@@ -5,7 +5,7 @@ attr_accessor :name, :url, :standing, :teams
 def initialize(name, url) 
     @standing, @name, @url = standing, name, url
     self.class.show_all << self 
-end  
+end
 
 def self.show_all 
 @@all 
@@ -15,17 +15,9 @@ def self.rest_all
     show_all.clear 
 end 
 
-#def self.show_matches_by_league
-   #Match.show_all {|match| match.league == self}
-#end  
 
-def teams 
 
-end 
 
-def self.standings 
-
-end 
 
 
 
