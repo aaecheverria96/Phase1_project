@@ -7,3 +7,5 @@ gem "rake"
 gem 'rspec'
 gem 'nokogiri'
 gem 'byebug'
+gem 'tty-table' 
+gem 'colorize'

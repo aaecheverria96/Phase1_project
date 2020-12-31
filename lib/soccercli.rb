@@ -17,9 +17,11 @@ STANDINGS_ID = {
             display_leagues
             user_selection
             input_validation 
-            standing
-            ask_done
+            teams
+            ask_done 
+            reset 
         end
+        goodbye 
     end 
 
     def welcome 
@@ -30,14 +32,14 @@ STANDINGS_ID = {
 
     def ask_done
         puts "Done? y / n" 
-        done_input = gets.strip 
+        done_input = gets.strip.downcase 
         
         while done_input != "y" && done_input != "n"
             puts "Sorry, didn't understand that. Please type y or n"
             done_input = gets.strip
         end
         
-        @done = done_input == "n" ? false : true
+        @done = done_input == "n" ? false : true 
     end
 
     def display_leagues 
@@ -60,7 +62,24 @@ STANDINGS_ID = {
        end
     end  
 
-    def standing
-       @scraper.get_standings("https://www.espn.com/soccer/league/_/name#{STANDINGS_ID[League.show_all[@input.to_i - 1].name]}")  
+    def teams 
+        league = League.show_all[@input.to_i - 1]
+       @scraper.get_teams("https://www.espn.com/soccer/league/_/name#{STANDINGS_ID[league.name]}", league)  
+       puts "League: #{league.name}" 
+       puts league.display_teams 
+       
+
+       #teams_by_league.each_with_index do |team, index| 
+        #puts "#{index + 1}. #{team.name}, Wins: #{team.wins}, Losses: #{team.losses}, Draws: #{team.draws}, Points: #{team.points}"
+       
+    end 
+
+    def reset 
+        system("clear")
+    end 
+
+    def goodbye 
+        system("clear")
+        puts "Thank you for visiting! Hope to see you soon!"
     end 
 end

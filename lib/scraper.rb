@@ -8,43 +8,42 @@ class Scraper
         url = "https://www.espn.com/soccer/competitions" 
         html =  open(url) 
         doc = Nokogiri::HTML(html)
-        first_leagues_container = doc.css("#fittPageContainer > div.page-container.cf > div > div > div > div:nth-child(3) > div:nth-child(1) > div > div > div > section > a") 
-        first_leagues_container.each do |league|
-          league_name = league.children.attr("title").value
-
-          if leagues_included.include?(league_name)
-            League.new(league_name, league.attr("href"))
-          end
-        end
-
-        second_leagues_container = doc.css("#fittPageContainer > div.page-container.cf > div > div > div > div:nth-child(3) > div:nth-child(2) > div > div > div > section > a") 
-        second_leagues_container.each do |league|
-          league_name = league.children.attr("title").value
-
-          if leagues_included.include?(league_name)
-            League.new(league_name, league.attr("href"))
-          end
-        end 
+        first_leagues_container = doc.css("#fittPageContainer > div.page-container.cf > div > div > div > div:nth-child(7) > div:nth-child(1) > div div.ContentList__Item") 
+          
+        first_leagues_container.each do |league| 
+            
+            league_url = league.css("section > div > div > span:nth-child(2) a").attr("href").value 
+        league_name = league.css("section div.pl3 h2").text 
+         
+        if leagues_included.include?(league_name)
+           League.new(league_name, league_url)
       end 
+    
+    end 
+     
+  end 
+      
 
       
 
 
-      def get_standings(url) 
+      def get_teams(url, league) 
         html = open(url) 
         doc = Nokogiri::HTML(html) 
         
         standings_container = doc.css("#main-container > div > section.col-c.chk-height > article > div > table > tbody  tr" )
 
-        standings_container.each_with_index do |team, index|
+        rows = standings_container.collect do |team| 
           name = team.css("td")[0].text
           points = team.css("td")[6].text
           wins = team.css("td")[2].text
           losses = team.css("td")[4].text
           draws = team.css("td")[3].text
-
-          puts "#{index + 1}. #{name}, Wins: #{wins}, Losses: #{losses}, Draws: #{draws}, Points: #{points}"
+          team_url = team.css("td")[0].children[0].attr("href")
+          team = {name: name, wins: wins, losses: losses, draws: draws, points: points, team_url: team_url, league: league}
+          Team.new(team)
         end 
+        #Team.new(name, wins, losses, draws, points, league)
       end
 end 
 #fittPageContainer > div.page-container.cf > div > div > div > div:nth-child(3) > div:nth-child(1) > div 
